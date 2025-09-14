@@ -48,5 +48,5 @@ jobs:
 
     - name: Docker login and push 
       run: |
-        docker login netflix:${{ github.run_id }} -u ${{ secrets.AZ_LOGIN }} -p ${{ secrets.AZ_PASSWD }}
+        docker login netflix -u ${{ secrets.AZ_LOGIN }} -p ${{ secrets.AZ_PASSWD }}
         docker push netflix:${{ github.run_id }} 
