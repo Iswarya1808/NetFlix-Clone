@@ -29,3 +29,21 @@ jobs:
           -Dsonar.sources=. \
           -Dsonar.host.url=http://20.55.41.52:9000/ \
           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+
+  CI: 
+    runs-on: self-hosted
+    needs: sonarqube
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Docker build
+      run: docker build -t Netflix:${{ github.run_id }} .
+      
+    - name: Trivy scan
+      run: trivy image --severity CRITICAL,HIGH --vuln-type "os,library" --exit-code 0 Netflix:${{ github.run_id }}
+
+    - name: Docker login and push 
+      run: |
+        docker login Netflix:${{ github.run_id }} -u ${{ secrets.AZ_LOGIN }} -p ${{ secrets.AZ_PASSWD }}
+        docker push Netflix:${{ github.run_id }} 
