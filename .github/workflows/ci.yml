@@ -41,7 +41,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Docker build
-      run: docker build -t netflix:${{ github.run_id }} .
+      run: docker build -t netflix.azurecr.io/netflix:${{ github.run_id }} .
       
     # - name: Trivy scan
     #   run: trivy image --severity CRITICAL,HIGH --vuln-type "os,library" --exit-code 0 netflix:${{ github.run_id }}
@@ -49,4 +49,4 @@ jobs:
     - name: Docker login and push 
       run: |
         docker login netflix.azurecr.io -u netflix -p ${{ secrets.ACR_PASSWD }}
-        docker push netflix:${{ github.run_id }} 
+        docker push netflix.azurecr.io/netflix:${{ github.run_id }} 
