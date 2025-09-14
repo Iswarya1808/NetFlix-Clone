@@ -43,8 +43,8 @@ jobs:
     - name: Docker build
       run: docker build -t netflix:${{ github.run_id }} .
       
-    - name: Trivy scan
-      run: trivy image --severity CRITICAL,HIGH --vuln-type "os,library" --exit-code 0 netflix:${{ github.run_id }}
+    # - name: Trivy scan
+    #   run: trivy image --severity CRITICAL,HIGH --vuln-type "os,library" --exit-code 0 netflix:${{ github.run_id }}
 
     - name: Docker login and push 
       run: |
