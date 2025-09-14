@@ -38,12 +38,12 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Docker build
-      run: docker build -t Netflix:${{ github.run_id }} .
+      run: docker build -t netflix:${{ github.run_id }} .
       
     - name: Trivy scan
       run: trivy image --severity CRITICAL,HIGH --vuln-type "os,library" --exit-code 0 Netflix:${{ github.run_id }}
 
     - name: Docker login and push 
       run: |
-        docker login Netflix:${{ github.run_id }} -u ${{ secrets.AZ_LOGIN }} -p ${{ secrets.AZ_PASSWD }}
-        docker push Netflix:${{ github.run_id }} 
+        docker login netflix:${{ github.run_id }} -u ${{ secrets.AZ_LOGIN }} -p ${{ secrets.AZ_PASSWD }}
+        docker push netflix:${{ github.run_id }} 
