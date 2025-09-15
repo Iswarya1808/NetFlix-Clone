@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: netflix-app
-        image: netflix.azurecr.io/netflix:17743552599
+        image: netflix.azurecr.io/netflix:17743601864
         ports:
         - containerPort: 80
