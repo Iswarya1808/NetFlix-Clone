@@ -1,7 +1,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: prometheus-test-prometheus-node-exporter
+  name: prometheus-test-prometheus-node-exporter # check this and update where you configuring node exported service in k8s
 spec:
   selector:
       app: node-exporter
