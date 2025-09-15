@@ -30,7 +30,7 @@ jobs:
         sonar-scanner \
           -Dsonar.projectKey=Netflix \
           -Dsonar.sources=. \
-          -Dsonar.host.url=http://20.55.41.52:9000/ \
+          -Dsonar.host.url=http://20.55.110.89:9000/ \
           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
   CI: 
